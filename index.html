@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIV-MAG - Sistema de Inventario y Ventas</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    /* ================ LOGIN PAGE ================ */
+    .login-container {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 90%;
+      max-width: 1000px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .login-left {
+      background: linear-gradient(135deg, #1f4cb5 0%, #1a3a7f 100%);
+      color: white;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .login-left h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .login-left p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .login-right {
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-right h2 {
+      font-size: 28px;
+      color: #1f4cb5;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .login-right p {
+      color: #999;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #1f4cb5;
+      box-shadow: 0 0 0 3px rgba(31,76,181,0.1);
+    }
+
+    .form-group input.error {
+      border-color: #e74c3c;
+      background-color: #ffe5e5;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .error-message::before {
+      content: "⚠";
+      font-weight: bold;
+    }
+
+    .remember-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .remember-section a {
+      color: #1f4cb5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #1f4cb5 0%, #1a3a7f 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(31,76,181,0.4);
+    }
+
+    @media (max-width: 768px) {
+      .login-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ================ DASHBOARD ================ */
+    .dashboard-hidden {
+      display: none;
+    }
+
+    .dashboard-container {
+      display: flex;
+      min-height: 100vh;
+      background: #f4f5f9;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(135deg, #1f4cb5 0%, #1a3a7f 100%);
+      color: white;
+      padding: 30px 20px;
+      overflow-y: auto;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu li {
+      padding: 15px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+
+    .menu li:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+
+    .menu li.active {
+      background: white;
+      color: #1f4cb5;
+      font-weight: bold;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .logout-btn {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .logout-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .topbar h1 {
+      font-size: 24px;
+      color: #1f4cb5;
+      font-weight: bold;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1f4cb5 0%, #1a3a7f 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .card h2 {
+      color: #1f4cb5;
+      margin-bottom: 20px;
+      font-size: 20px;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 15px;
+    }
+
+    .card-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #1f4cb5;
+    }
+
+    .stat-box .value {
+      color: #1f4cb5;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1f4cb5 0%, #1a3a7f 100%);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin-top: 15px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(31,76,181,0.4);
+    }
+
+    .btn-danger {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .info-panel {
+      background: linear-gradient(135deg, #e8f4f8 0%, #d4ecf5 100%);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #3498db;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table thead {
+      background: #f0f0f0;
+      border-bottom: 2px solid #1f4cb5;
+    }
+
+    table th, table td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    table td {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    table tr:hover {
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== LOGIN PAGE ========== -->
+  <div id="loginPage" class="login-container">
+    <div class="login-wrapper">
+      <div class="login-left">
+        <div style="font-size: 48px; margin-bottom: 30px;">📦</div>
+        <h1>SIV-MAG</h1>
+        <p>Sistema de Inventario y Ventas</p>
+        <p style="font-size: 13px; margin-top: 20px; opacity: 0.95;">Optimiza tu gestión logística con precisión empresarial</p>
+      </div>
+
+      <div class="login-right">
+        <h2>Iniciar Sesión</h2>
+        <p>Accede a tu cuenta para comenzar</p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">👤 Usuario</label>
+            <input type="text" id="username" name="username" placeholder="Tu nombre de usuario" required>
+            <div class="error-message" id="usernameError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">🔐 Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+            <div class="error-message" id="passwordError"></div>
+          </div>
+
+          <div id="formError" class="error-message" style="display: none; margin-bottom: 15px;"></div>
+
+          <div class="remember-section">
+            <label>
+              <input type="checkbox" id="remember" style="margin-right: 5px;">
+              Recordar sesión
+            </label>
+            <a href="#">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <button type="submit" class="btn-login">Aceptar →</button>
+        </form>
+
+        <p style="text-align: center; margin-top: 25px; color: #999; font-size: 12px;">
+          © 2024 SIV-MAG. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DASHBOARD ========== -->
+  <div id="dashboard" class="dashboard-hidden">
+    <div class="dashboard-container">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="logo">📦 SIV-MAG</div>
+
+        <ul class="menu">
+          <li class="active" onclick="showSection('dashboard', event)">📊 Dashboard</li>
+          <li onclick="showSection('lista', event)">📋 Lista Enlazada</li>
+          <li onclick="showSection('pila', event)">📚 Pila (Stack)</li>
+          <li onclick="showSection('conversion', event)">🔄 Conversión Notación</li>
+          <li onclick="showSection('almacen', event)">🏭 Almacén</li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <button class="logout-btn" onclick="logout()">🚪 Cerrar Sesión</button>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="content">
+        <!-- TOPBAR -->
+        <div class="topbar">
+          <h1 id="pageTitle">Dashboard</h1>
+          <div class="user-info">
+            <div>
+              <div style="font-weight: 600; color: #333;">Admin User</div>
+              <div style="font-size: 12px; color: #999;">Cajero Principal</div>
+            </div>
+            <div class="user-avatar" id="userInitial">A</div>
+          </div>
+        </div>
+
+        <!-- DASHBOARD SECTION -->
+        <div id="dashboardSection" class="section active">
+          <div class="info-panel">
+            <p>👋 Bienvenido al Sistema de Inventario y Ventas. Aquí puedes gestionar tu inventario, registrar ventas y acceder a reportes en tiempo real.</p>
+          </div>
+
+          <div class="card">
+            <h2>📊 Resumen del Día</h2>
+            <div class="card-content">
+              <div class="stat-box">
+                <div style="color: #666; font-size: 12px; margin-bottom: 8px;">TOTAL VENTAS</div>
+                <div class="value">$4,250.80</div>
+              </div>
+              <div class="stat-box">
+                <div style="color: #666; font-size: 12px; margin-bottom: 8px;">EFECTIVO</div>
+                <div class="value">$1,120.00</div>
+              </div>
+              <div class="stat-box">
+                <div style="color: #666; font-size: 12px; margin-bottom: 8px;">TARJETA</div>
+                <div class="value">$2,830.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LISTA ENLAZADA SECTION -->
+        <div id="listaSection" class="section">
+          <div class="card">
+            <h2>📋 Gestor de Lista Doblemente Enlazada</h2>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Insertar Elemento:</label>
+              <div style="display: flex; gap: 10px;">
+                <input type="number" id="listaInput" placeholder="Ingresa un número" style="flex: 1; padding: 10px; border: 2px solid #e0e0e0; border-radius: 6px;">
+                <button class="btn-primary" onclick="insertarLista()">Agregar</button>
+              </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+              <p style="font-weight: 600; color: #333; margin-bottom: 10px;">Lista Actual:</p>
+              <p id="listaOutput" style="color: #666; font-family: monospace; min-height: 30px;">[ ]</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <button class="btn-primary" onclick="buscarEnLista()">🔍 Buscar</button>
+              <button class="btn-primary btn-danger" onclick="limpiarLista()">🗑️ Limpiar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PILA SECTION -->
+        <div id="pilaSection" class="section">
+          <div class="card">
+            <h2>📚 Gestor de Pila (Stack)</h2>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Push - Agregar Elemento:</label>
+              <div style="display: flex; gap: 10px;">
+                <input type="text" id="pilaInput" placeholder="Ingresa un valor" style="flex: 1; padding: 10px; border: 2px solid #e0e0e0; border-radius: 6px;">
+                <button class="btn-primary" onclick="pushPila()">Push</button>
+              </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+              <p style="font-weight: 600; color: #333; margin-bottom: 10px;">Estado de la Pila:</p>
+              <p id="pilaOutput" style="color: #666; font-family: monospace; min-height: 30px;">[ ]</p>
+              <p id="pilaTop" style="color: #1f4cb5; font-weight: 600; margin-top: 10px;"></p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+              <button class="btn-primary" onclick="popPila()">Pop</button>
+              <button class="btn-primary" onclick="verTopePila()">Tope</button>
+              <button class="btn-primary btn-danger" onclick="limpiarPila()">Limpiar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONVERSIÓN NOTACIÓN SECTION -->
+        <div id="conversionSection" class="section">
+          <div class="card">
+            <h2>🔄 Conversión Infija a Posfija</h2>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Expresión Infija:</label>
+              <input type="text" id="conversionInput" placeholder="Ej: 8*(5^4+2)-6/2/(9*3)" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 6px; font-family: monospace;">
+              <button class="btn-primary" onclick="convertirNotacion()" style="width: 100%;">Convertir a Posfija</button>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+              <p style="color: #666;">Infija: <span id="resulInfija" style="font-family: monospace; font-weight: 600;">-</span></p>
+              <p style="color: #1f4cb5;">Posfija: <span id="resulPosfija" style="font-family: monospace; font-weight: 600;">-</span></p>
+            </div>
+
+            <table style="margin-top: 15px;">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Acción</th>
+                  <th>Pila</th>
+                  <th>Posfija</th>
+                </tr>
+              </thead>
+              <tbody id="conversionTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ALMACÉN SECTION -->
+        <div id="almacenSection" class="section">
+          <div class="card">
+            <h2>🏭 Registro de Almacén</h2>
+            
+            <div class="info-panel">
+              <p>📊 Aquí puedes gestionar el inventario, registrar movimientos de entrada y salida, y ver reportes del stock.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+              <div style="background: #f0f0f0; padding: 15px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="font-weight: 600;">INGRESO (Hoy)</span>
+                  <span style="color: #27ae60; font-weight: 600;">$1,240.00</span>
+                </div>
+              </div>
+              <div style="background: #f0f0f0; padding: 15px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="font-weight: 600;">SALIDAS (Hoy)</span>
+                  <span style="color: #e74c3c; font-weight: 600;">$850.50</span>
+                </div>
+              </div>
+              <div style="background: #f0f0f0; padding: 15px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="font-weight: 600;">BALANCE DIARIO</span>
+                  <span style="color: #1f4cb5; font-weight: 600;">+ $389.50</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn-primary" style="width: 100%;">📝 Registrar Movimiento</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let lista = [];
+    let pila = [];
+    let usuarioActual = '';
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      validarLogin();
+    });
+
+    function validarLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const formError = document.getElementById('formError');
+      const usernameError = document.getElementById('usernameError');
+      const passwordError = document.getElementById('passwordError');
+
+      usernameError.innerHTML = '';
+      passwordError.innerHTML = '';
+      formError.innerHTML = '';
+      formError.style.display = 'none';
+
+      let valido = true;
+
+      if (!username) {
+        usernameError.innerHTML = 'El usuario es requerido';
+        document.getElementById('username').classList.add('error');
+        valido = false;
+      } else if (username.length < 3) {
+        usernameError.innerHTML = 'El usuario debe tener al menos 3 caracteres';
+        document.getElementById('username').classList.add('error');
+        valido = false;
+      } else {
+        document.getElementById('username').classList.remove('error');
+      }
+
+      if (!password) {
+        passwordError.innerHTML = 'La contraseña es requerida';
+        document.getElementById('password').classList.add('error');
+        valido = false;
+      } else if (password.length < 4) {
+        passwordError.innerHTML = 'La contraseña debe tener al menos 4 caracteres';
+        document.getElementById('password').classList.add('error');
+        valido = false;
+      } else {
+        document.getElementById('password').classList.remove('error');
+      }
+
+      if (valido) {
+        if (username === 'admin' && password === '1234') {
+          usuarioActual = username;
+          document.getElementById('userInitial').textContent = username.charAt(0).toUpperCase();
+          localStorage.setItem('usuario', username);
+          if (document.getElementById('remember').checked) {
+            localStorage.setItem('recordar', 'true');
+          }
+          document.getElementById('loginPage').style.display = 'none';
+          document.getElementById('dashboard').classList.remove('dashboard-hidden');
+          cargarDatos();
+        } else {
+          formError.innerHTML = 'Usuario o contraseña incorrectos';
+          formError.style.display = 'flex';
+        }
+      }
+    }
+
+    function logout() {
+      if (confirm('¿Deseas cerrar sesión?')) {
+        localStorage.removeItem('usuario');
+        document.getElementById('loginPage').style.display = 'flex';
+        document.getElementById('dashboard').classList.add('dashboard-hidden');
+        document.getElementById('loginForm').reset();
+        lista = [];
+        pila = [];
+        usuarioActual = '';
+      }
+    }
+
+    function showSection(section, event) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.menu li').forEach(li => li.classList.remove('active'));
+
+      const sectionMap = {
+        'dashboard': 'dashboardSection',
+        'lista': 'listaSection',
+        'pila': 'pilaSection',
+        'conversion': 'conversionSection',
+        'almacen': 'almacenSection'
+      };
+
+      const titleMap = {
+        'dashboard': 'Dashboard',
+        'lista': 'Lista Doblemente Enlazada',
+        'pila': 'Pila (Stack)',
+        'conversion': 'Conversión Infija a Posfija',
+        'almacen': 'Almacén'
+      };
+
+      document.getElementById(sectionMap[section]).classList.add('active');
+      document.getElementById('pageTitle').textContent = titleMap[section];
+      event.target.closest('li').classList.add('active');
+      guardarDatos();
+    }
+
+    function insertarLista() {
+      const input = document.getElementById('listaInput');
+      const valor = input.value.trim();
+
+      if (!valor) {
+        alert('Por favor ingresa un número');
+        return;
+      }
+
+      if (isNaN(valor)) {
+        alert('Debes ingresar un número válido');
+        return;
+      }
+
+      lista.push(parseInt(valor));
+      actualizarVistaLista();
+      input.value = '';
+      guardarDatos();
+    }
+
+    function actualizarVistaLista() {
+      const output = lista.length > 0 ? '[ ' + lista.join(' <-> ') + ' ]' : '[ ]';
+      document.getElementById('listaOutput').textContent = output;
+    }
+
+    function buscarEnLista() {
+      const valor = prompt('¿Qué número deseas buscar?');
+      if (valor !== null && valor.trim() !== '') {
+        if (lista.includes(parseInt(valor))) {
+          alert('✓ Elemento encontrado en la lista');
+        } else {
+          alert('✗ Elemento no encontrado');
+        }
+      }
+    }
+
+    function limpiarLista() {
+      if (lista.length > 0 && confirm('¿Deseas limpiar la lista?')) {
+        lista = [];
+        actualizarVistaLista();
+        guardarDatos();
+      }
+    }
+
+    function pushPila() {
+      const input = document.getElementById('pilaInput');
+      const valor = input.value.trim();
+
+      if (!valor) {
+        alert('Por favor ingresa un valor');
+        return;
+      }
+
+      pila.push(valor);
+      actualizarVistaPila();
+      input.value = '';
+      guardarDatos();
+    }
+
+    function popPila() {
+      if (pila.length > 0) {
+        const removido = pila.pop();
+        document.getElementById('pilaTop').textContent = `Elemento removido: ${removido}`;
+        actualizarVistaPila();
+        guardarDatos();
+      } else {
+        alert('La pila está vacía');
+      }
+    }
+
+    function verTopePila() {
+      if (pila.length > 0) {
+        document.getElementById('pilaTop').textContent = `Tope: ${pila[pila.length - 1]}`;
+      } else {
+        document.getElementById('pilaTop').textContent = 'La pila está vacía';
+      }
+    }
+
+    function actualizarVistaPila() {
+      const output = pila.length > 0 ? '[ ' + pila.join(', ') + ' ]' : '[ ]';
+      document.getElementById('pilaOutput').textContent = output;
+      if (pila.length > 0) {
+        document.getElementById('pilaTop').textContent = `Tope: ${pila[pila.length - 1]}`;
+      }
+    }
+
+    function limpiarPila() {
+      if (pila.length > 0 && confirm('¿Deseas vaciar la pila?')) {
+        pila = [];
+        actualizarVistaPila();
+        document.getElementById('pilaTop').textContent = '';
+        guardarDatos();
+      }
+    }
+
+    function convertirNotacion() {
+      const input = document.getElementById('conversionInput').value.trim();
+
+      if (!input) {
+        alert('Por favor ingresa una expresión');
+        return;
+      }
+
+      const resultado = convertirInfijaAPosfija(input);
+      
+      document.getElementById('resulInfija').textContent = resultado.infija;
+      document.getElementById('resulPosfija').textContent = resultado.posfija;
+
+      const tbody = document.getElementById('conversionTable');
+      tbody.innerHTML = '';
+
+      resultado.pasos.forEach(paso => {
+        const fila = tbody.insertRow();
+        fila.innerHTML = `
+          <td>${paso.token || '-'}</td>
+          <td>${paso.accion}</td>
+          <td><code>${JSON.stringify(paso.pila)}</code></td>
+          <td style="color: #1f4cb5; font-weight: 600;"><code>${paso.posfija}</code></td>
+        `;
+      });
+
+      guardarDatos();
+    }
+
+    function convertirInfijaAPosfija(infija) {
+      const pila = [];
+      let posfija = '';
+      const pasos = [];
+
+      function precedencia(op) {
+        if (op === '^') return 3;
+        if (op === '*' || op === '/') return 2;
+        if (op === '+' || op === '-') return 1;
+        return 0;
+      }
+
+      function esOperando(c) {
+        return /[0-9a-zA-Z]/.test(c);
+      }
+
+      for (let i = 0; i < infija.length; i++) {
+        const token = infija[i];
+
+        if (esOperando(token)) {
+          posfija += token;
+          pasos.push({ token, accion: 'Asigna', pila: [...pila], posfija });
+        } else if (token === '(') {
+          pila.push(token);
+          pasos.push({ token, accion: 'Push', pila: [...pila], posfija });
+        } else if (token === ')') {
+          let tope = pila[pila.length - 1];
+          while (tope && tope !== '(') {
+            posfija += pila.pop();
+            tope = pila[pila.length - 1];
+          }
+          pila.pop();
+          pasos.push({ token, accion: 'Pop hasta (', pila: [...pila], posfija });
+        } else if (['+', '-', '*', '/', '^'].includes(token)) {
+          while (pila.length > 0 && pila[pila.length - 1] !== '(' && precedencia(pila[pila.length - 1]) >= precedencia(token)) {
+            posfija += pila.pop();
+          }
+          pila.push(token);
+          pasos.push({ token, accion: 'Operador', pila: [...pila], posfija });
+        }
+      }
+
+      while (pila.length > 0) {
+        posfija += pila.pop();
+      }
+      pasos.push({ token: '', accion: 'Vaciar pila', pila: [...pila], posfija });
+
+      return { infija, posfija, pasos };
+    }
+
+    function guardarDatos() {
+      const datos = { lista, pila, usuario: usuarioActual };
+      localStorage.setItem('sivmagDatos', JSON.stringify(datos));
+    }
+
+    function cargarDatos() {
+      const datosGuardados = localStorage.getItem('sivmagDatos');
+      if (datosGuardados) {
+        const datos = JSON.parse(datosGuardados);
+        lista = datos.lista || [];
+        pila = datos.pila || [];
+        actualizarVistaLista();
+        actualizarVistaPila();
+      }
+    }
+
+    window.addEventListener('load', function() {
+      const usuarioGuardado = localStorage.getItem('usuario');
+      const recordar = localStorage.getItem('recordar');
+
+      if (usuarioGuardado && recordar === 'true') {
+        document.getElementById('remember').checked = true;
+      }
+
+      if (usuarioGuardado) {
+        usuarioActual = usuarioGuardado;
+        document.getElementById('userInitial').textContent = usuarioGuardado.charAt(0).toUpperCase();
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('dashboard').classList.remove('dashboard-hidden');
+        cargarDatos();
+      }
+    });
+  </script>
+</body>
+</html>

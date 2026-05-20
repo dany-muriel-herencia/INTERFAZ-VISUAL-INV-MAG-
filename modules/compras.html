@@ -1,0 +1,143 @@
+﻿<div id="section-compras" class="section-content active main-content-padding">
+
+            <!-- NAVBAR -->
+        <div class="navbar">
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar compras, facturas...">
+            </div>
+
+            <div class="user">
+                <i class="fa-regular fa-bell"></i>
+                <div>
+                    <strong>Carlos Mendoza</strong>
+                    <p style="font-size:12px;">Admin Almacén</p>
+                </div>
+                <div class="avatar">C</div>
+                <button onclick="logout()" style="background:#e53935; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold;">Cerrar Sesión</button>
+            </div>
+        </div>
+
+        <!-- ALERT -->
+        <div class="alert" id="alertBox" style="display:none;">
+            <div>
+                <strong id="alertTitle">Operación Exitosa</strong>
+                <p id="alertMsg">La compra ha sido registrada correctamente.</p>
+            </div>
+            <i class="fa-solid fa-xmark" onclick="this.parentElement.style.display='none';" style="cursor:pointer;"></i>
+        </div>
+
+        <!-- TITULO -->
+        <div class="top-title">
+            <div>
+                <h1>Gestión de Compras</h1>
+                <p>Registre nuevas entradas de abarrotes y controle su historial.</p>
+            </div>
+            <button class="buy-btn" onclick="alert('Nueva compra')">+ Nueva Compra</button>
+        </div>
+
+        <!-- GRID -->
+        <div class="grid">
+
+            <!-- LEFT -->
+            <div class="card">
+                <h3>
+                    <i class="fa-solid fa-file-invoice"></i>
+                    Datos de la Compra
+                </h3>
+
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Fecha de Compra</label>
+                        <input type="date" id="fecha">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Proveedor</label>
+                        <select id="proveedor">
+                            <option value="">Seleccione un proveedor...</option>
+                            <option>Gloria S.A</option>
+                            <option>Backus</option>
+                            <option>Laive</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Tipo de Comprobante</label>
+                        <select id="tipo">
+                            <option>Factura</option>
+                            <option>Boleta</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Nro de Comprobante</label>
+                        <input type="text" id="numero" placeholder="F001-0004567">
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="input-group">
+                    <label>Observaciones</label>
+                    <textarea placeholder="Notas adicionales..."></textarea>
+                </div>
+
+                <!-- TABLA -->
+                <table>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                    <tr>
+                        <td>Arroz Extra Costeño</td>
+                        <td>20</td>
+                        <td>S/ 18.50</td>
+                        <td>S/ 370.00</td>
+                        <td><i class="fa-solid fa-trash delete"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Aceite Primor</td>
+                        <td>48</td>
+                        <td>S/ 8.20</td>
+                        <td>S/ 393.60</td>
+                        <td><i class="fa-solid fa-trash delete"></i></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- RIGHT -->
+            <div>
+                <div class="card">
+                    <h3>Resumen</h3>
+
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <strong>S/ 983.60</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>IGV (18%)</span>
+                        <strong>S/ 177.05</strong>
+                    </div>
+
+                    <div class="total">
+                        <p>TOTAL GENERAL</p>
+                        <h1>S/ 1,160.65</h1>
+                    </div>
+
+                    <button class="save-btn" onclick="guardarCompra()">Guardar Compra</button>
+                </div>
+
+                <div class="info">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Recuerde que al guardar la compra, el stock de los productos se actualizará automáticamente.
+                </div>
+            </div>
+
+        </div> <!-- Fin de grid compras -->
+        </div> <!-- Fin de section-compras -->
+

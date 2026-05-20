@@ -1,0 +1,189 @@
+﻿<div id="section-movimientos" class="section-content">
+            <div class="flex-1 flex flex-col relative">
+                
+                <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center sticky top-0 z-10">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-clipboard-list text-blue-600 mr-3 text-xl"></i>
+                        <h2 class="text-xl font-bold text-blue-900">Registrar Movimiento de Inventario</h2>
+                    </div>
+                    
+                    <div class="flex items-center space-x-6 text-sm">
+                        <div class="flex items-center text-gray-500 font-medium">
+                            <i class="fa-regular fa-calendar mr-2"></i> 20 MAYO, 2026
+                            <span class="mx-3 text-gray-300">|</span>
+                            13:30 PM
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 border-l border-gray-200 pl-6">
+                            <div class="text-right">
+                                <p class="font-bold text-gray-800 text-xs">Admin User</p>
+                                <p class="text-[10px] text-gray-400 uppercase font-semibold">GERENTE</p>
+                            </div>
+                            <div class="w-8 h-8 bg-blue-100 text-blue-700 rounded flex items-center justify-center font-bold">
+                                AU
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="p-8 pb-20 max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <div class="lg:col-span-2 space-y-6">
+                        
+                        <div class="flex gap-4">
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex-1">
+                                <label class="block text-xs font-bold text-gray-500 mb-3 tracking-wide">TIPO DE MOVIMIENTO</label>
+                                <div class="flex border border-gray-200 rounded-lg overflow-hidden text-sm font-medium">
+                                    <button onclick="seleccionarTipoMovimiento(this, 'INGRESO')" class="flex-1 py-2 btn-segment active bg-blue-700 text-white transition">INGRESO</button>
+                                    <button onclick="seleccionarTipoMovimiento(this, 'SALIDA')" class="flex-1 py-2 btn-segment text-gray-600 hover:bg-gray-50 border-l border-gray-200 transition">SALIDA</button>
+                                    <button onclick="seleccionarTipoMovimiento(this, 'AJUSTE')" class="flex-1 py-2 btn-segment text-gray-600 hover:bg-gray-50 border-l border-gray-200 transition">AJUSTE</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex-1">
+                                <label class="block text-xs font-bold text-gray-500 mb-3 tracking-wide">MOTIVO / OBSERVACIÓN</label>
+                                <input type="text" id="movimientoObservacion" placeholder="Ej. Reposición de stock mensual" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-blue-500">
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-bold text-gray-800">Selección de Producto</h3>
+                                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">ABARROTES</span>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row gap-8">
+                                <div class="flex-1">
+                                    <label class="block text-xs font-bold text-gray-500 mb-2">BUSCAR PRODUCTO</label>
+                                    <div class="relative mb-6">
+                                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
+                                        <input type="text" value="Arroz Costeño Extra 1kg" class="w-full bg-white border border-gray-300 rounded-lg pl-9 pr-4 py-2.5 text-sm font-medium focus:outline-none focus:border-blue-500 text-gray-700" disabled>
+                                    </div>
+                                    
+                                    <div class="flex gap-8">
+                                        <div>
+                                            <p class="text-xs font-bold text-gray-500">CÓDIGO</p>
+                                            <p class="font-bold text-gray-800 text-sm">P00234-RT</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold text-gray-500">STOCK ACTUAL</p>
+                                            <p class="font-bold text-blue-600 text-sm">50 Unidades</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="w-64 bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col items-center text-center justify-center border-dashed">
+                                    <div class="w-16 h-16 bg-white border border-gray-200 shadow-sm rounded mb-3 flex items-center justify-center text-gray-300 text-2xl">
+                                        <i class="fa-solid fa-image"></i>
+                                    </div>
+                                    <p class="text-xs font-bold text-blue-700">PRODUCTO SELECCIONADO</p>
+                                    <p class="text-xs text-gray-500">Categoría: Granos y Cereales</p>
+                                </div>
+                            </div>
+                            
+                            <hr class="my-6 border-gray-100">
+                            
+                            <div class="flex items-end gap-6 justify-between">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 mb-2">CANTIDAD A MOVER</label>
+                                    <div class="flex items-center">
+                                        <button onclick="cambiarCantidadMover(-1)" class="w-10 h-10 border border-gray-300 rounded-l-lg bg-white text-gray-500 hover:bg-gray-50 font-bold"><i class="fa-solid fa-minus"></i></button>
+                                        <input type="text" id="cantidadMoverInput" value="10" class="w-20 h-10 border-y border-gray-300 text-center font-bold text-blue-700 focus:outline-none">
+                                        <button onclick="cambiarCantidadMover(1)" class="w-10 h-10 border border-gray-300 rounded-r-lg bg-white text-gray-500 hover:bg-gray-50 font-bold"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-center gap-6 flex-1 justify-end">
+                                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                                        <i id="projectionIcon" class="fa-solid fa-arrow-trend-up text-emerald-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] font-bold text-gray-500 uppercase">PROYECCIÓN DE STOCK</p>
+                                        <p class="font-bold text-gray-800 text-lg">50 <i class="fa-solid fa-arrow-right text-gray-400 text-sm mx-1"></i> <span id="proyStockVal" class="text-blue-600 font-bold">60</span> <span class="text-sm font-normal text-gray-500">unid.</span></p>
+                                    </div>
+                                    <div class="text-right ml-4 border-l border-blue-200 pl-6">
+                                        <p class="text-[10px] font-bold text-gray-500 uppercase">VALOR ESTIMADO</p>
+                                        <p id="proyValorEstimado" class="font-bold text-gray-600 text-xl">S/ 84.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end gap-4 mt-6">
+                            <button onclick="document.getElementById('movimientoObservacion').value = ''; document.getElementById('cantidadMoverInput').value = '10'; cambiarCantidadMover(0);" class="px-6 py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">Limpiar</button>
+                            <button onclick="showSection('compras')" class="px-6 py-2.5 text-red-500 text-sm font-medium hover:bg-red-50 rounded-lg">Cancelar</button>
+                            <button onclick="registrarMovimientoInventario()" class="px-8 py-2.5 bg-[#0b5fb3] text-white rounded-lg text-sm font-semibold hover:bg-blue-800 shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-save"></i> Registrar Movimiento
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="space-y-6">
+                        
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                            <div class="bg-gray-50 px-5 py-4 border-b border-gray-100 flex justify-between items-center">
+                                <h4 class="text-xs font-bold text-gray-600 tracking-wide">HISTORIAL RECIENTE</h4>
+                                <a href="#" class="text-xs font-bold text-blue-600 hover:underline" onclick="mostrarAlerta('Historial', 'Función en desarrollo.')">VER TODO</a>
+                            </div>
+                            <div class="p-0" id="historialRecienteContainer">
+                                <div class="p-5 border-b border-gray-50 hover:bg-gray-50 transition">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded">INGRESO</span>
+                                        <span class="text-xs text-gray-400 font-medium">Hoy, 09:15 AM</span>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 text-sm mb-1">Aceite Primor Premium 1L</h5>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-gray-500">+24 Unidades</span>
+                                        <span class="text-sm font-bold text-gray-700">S/ 216.00</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 border-b border-gray-50 hover:bg-gray-50 transition">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">SALIDA</span>
+                                        <span class="text-xs text-gray-400 font-medium">Ayer, 18:30 PM</span>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 text-sm mb-1">Leche Gloria Azul 400g</h5>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-gray-500">-12 Unidades</span>
+                                        <span class="text-sm font-bold text-gray-700">S/ 48.00</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 hover:bg-gray-50 transition">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="bg-yellow-50 text-yellow-700 text-[10px] font-bold px-2 py-0.5 rounded">AJUSTE</span>
+                                        <span class="text-xs text-gray-400 font-medium">22 May, 11:20 AM</span>
+                                    </div>
+                                    <h5 class="font-bold text-gray-800 text-sm mb-1">Azúcar Rubia 1kg</h5>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-gray-500">-5 Unidades (Dañado)</span>
+                                        <span class="text-sm font-bold text-gray-700">S/ 17.50</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#0b5fb3] rounded-xl shadow-md p-6 text-white relative overflow-hidden">
+                            <i class="fa-solid fa-chart-line absolute -right-4 -bottom-4 text-7xl text-white opacity-10"></i>
+                            <h4 class="text-xs font-bold text-blue-200 mb-5 tracking-wide">RESUMEN OPERATIVO</h4>
+                            
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-sm text-blue-100">Ingresos (Hoy)</span>
+                                <span class="text-lg font-bold">S/ 1,240.00</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-sm text-blue-100">Salidas (Hoy)</span>
+                                <span class="text-lg font-bold">S/ 850.50</span>
+                            </div>
+                            
+                            <div class="pt-4 border-t border-blue-600 flex justify-between items-center">
+                                <span class="font-bold text-sm">Balance Diario</span>
+                                <span class="bg-white text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">+ S/ 389.50</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+

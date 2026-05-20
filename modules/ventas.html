@@ -1,0 +1,179 @@
+<div id="section-ventas" class="section-content">
+    <div class="ventas-page">
+        <header class="ventas-page-header">
+            <div class="ventas-header-left">
+                <h1>Registrar Venta</h1>
+                <p>Gestión de caja y salida de productos de abarrotes.</p>
+            </div>
+            <div class="ventas-header-right">
+                <div class="ventas-label">Fecha y Hora</div>
+                <div class="ventas-timestamp">20 Mayo 2026 | 14:35</div>
+            </div>
+        </header>
+
+        <div class="ventas-main-layout">
+            <div class="ventas-left-column">
+                <section class="ventas-selectors-card">
+                    <div class="ventas-input-box">
+                        <label><i class="fa-regular fa-user"></i> Cliente</label>
+                        <input type="text" class="ventas-input-field" placeholder="Buscar cliente por DNI o nombre...">
+                    </div>
+                    <div class="ventas-input-box">
+                        <label><i class="fa-solid fa-box"></i> Producto</label>
+                        <input type="text" class="ventas-input-field" placeholder="Código o nombre...">
+                    </div>
+                    <button class="ventas-btn-add-product" type="button" onclick="mostrarAlerta('Producto', 'Selector de productos en desarrollo.')">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </section>
+
+                <section class="ventas-table-card">
+                    <div>
+                        <div class="ventas-table-header">
+                            <div>PRODUCTO</div>
+                            <div>CANTIDAD</div>
+                            <div>UNITARIO</div>
+                            <div>SUBTOTAL</div>
+                            <div></div>
+                        </div>
+
+                        <div class="ventas-product-row" data-price="18.50">
+                            <div class="ventas-product-info">
+                                <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=60&w=100" alt="Arroz" class="ventas-product-img">
+                                <div class="ventas-product-text">
+                                    <div class="ventas-name">Arroz Costeño Extra 5kg</div>
+                                    <div class="ventas-sku">SKU: 775012345</div>
+                                </div>
+                            </div>
+                            <div class="ventas-quantity-control">
+                                <button class="ventas-qty-btn" type="button" onclick="cambiarCantidadVenta(this, -1)">-</button>
+                                <input type="text" class="ventas-qty-val" value="2" readonly>
+                                <button class="ventas-qty-btn" type="button" onclick="cambiarCantidadVenta(this, 1)">+</button>
+                            </div>
+                            <div class="ventas-price-unit">S/ 18.50</div>
+                            <div class="ventas-price-subtotal">S/ 37.00</div>
+                            <button class="ventas-btn-delete" type="button" onclick="eliminarProductoVenta(this)">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+
+                        <div class="ventas-product-row" data-price="11.20">
+                            <div class="ventas-product-info">
+                                <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=60&w=100" alt="Aceite" class="ventas-product-img">
+                                <div class="ventas-product-text">
+                                    <div class="ventas-name">Aceite Primor Premium 1L</div>
+                                    <div class="ventas-sku">SKU: 775098765</div>
+                                </div>
+                            </div>
+                            <div class="ventas-quantity-control">
+                                <button class="ventas-qty-btn" type="button" onclick="cambiarCantidadVenta(this, -1)">-</button>
+                                <input type="text" class="ventas-qty-val" value="1" readonly>
+                                <button class="ventas-qty-btn" type="button" onclick="cambiarCantidadVenta(this, 1)">+</button>
+                            </div>
+                            <div class="ventas-price-unit">S/ 11.20</div>
+                            <div class="ventas-price-subtotal">S/ 11.20</div>
+                            <button class="ventas-btn-delete" type="button" onclick="eliminarProductoVenta(this)">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+
+                        <div class="ventas-product-row" data-price="4.50">
+                            <div class="ventas-product-info">
+                                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&q=60&w=100" alt="Leche" class="ventas-product-img">
+                                <div class="ventas-product-text">
+                                    <div class="ventas-name">Leche Gloria Azul 400g</div>
+                                    <div class="ventas-sku">SKU: 775044332</div>
+                                </div>
+                            </div>
+                            <div class="ventas-quantity-control">
+                                <button class="ventas-qty-btn" type="button" onclick="cambiarCantidadVenta(this, -1)">-</button>
+                                <input type="text" class="ventas-qty-val" value="6" readonly>
+                                <button class="ventas-qty-btn" type="button" onclick="cambiarCantidadVenta(this, 1)">+</button>
+                            </div>
+                            <div class="ventas-price-unit">S/ 4.50</div>
+                            <div class="ventas-price-subtotal">S/ 27.00</div>
+                            <button class="ventas-btn-delete" type="button" onclick="eliminarProductoVenta(this)">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ventas-scan-placeholder">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Escanee más productos para agregarlos</span>
+                    </div>
+                </section>
+            </div>
+
+            <div class="ventas-right-column">
+                <section class="ventas-payment-card">
+                    <h2>Método de Pago</h2>
+                    <div class="ventas-payment-options">
+                        <div class="ventas-payment-method selected" onclick="seleccionarMetodoPagoVenta(this)">
+                            <div class="ventas-method-info"><i class="fa-solid fa-money-bill-wave"></i> Efectivo</div>
+                            <div class="ventas-method-radio"></div>
+                        </div>
+                        <div class="ventas-payment-method" onclick="seleccionarMetodoPagoVenta(this)">
+                            <div class="ventas-method-info"><i class="fa-solid fa-credit-card"></i> Yape</div>
+                            <div class="ventas-method-radio"></div>
+                        </div>
+                        <div class="ventas-payment-method" onclick="seleccionarMetodoPagoVenta(this)">
+                            <div class="ventas-method-info"><i class="fa-solid fa-building-columns"></i> Plin</div>
+                            <div class="ventas-method-radio"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="ventas-summary-card">
+                    <div class="ventas-summary-row">
+                        <span>Subtotal</span>
+                        <span class="ventas-val" id="ventasSubtotal">S/ 63.73</span>
+                    </div>
+                    <div class="ventas-summary-row">
+                        <span>IGV (18%)</span>
+                        <span class="ventas-val" id="ventasIgv">S/ 11.47</span>
+                    </div>
+                    <div class="ventas-summary-row">
+                        <span>Descuentos</span>
+                        <span class="ventas-val ventas-discount">- S/ 0.00</span>
+                    </div>
+
+                    <div class="ventas-summary-divider"></div>
+
+                    <div class="ventas-total-row">
+                        <div class="ventas-total-label">
+                            <div class="ventas-lbl">TOTAL</div>
+                            <div class="ventas-sublbl">SOLES PERUANOS</div>
+                        </div>
+                        <div class="ventas-total-amount" id="ventasTotal">S/ 75.20</div>
+                    </div>
+
+                    <button class="ventas-btn-checkout" type="button" onclick="registrarVenta()">
+                        <i class="fa-solid fa-check"></i>
+                        Registrar Venta
+                    </button>
+
+                    <button class="ventas-btn-cancel-sale" type="button" onclick="mostrarAlerta('Venta', 'Venta cancelada.')">
+                        <i class="fa-solid fa-xmark"></i>
+                        Cancelar
+                    </button>
+                </section>
+
+                <div class="ventas-aux-buttons">
+                    <button class="ventas-btn-aux" type="button" onclick="mostrarAlerta('Ticket', 'Impresión de ticket en desarrollo.')">
+                        <i class="fa-solid fa-print"></i>
+                        Imprimir Ticket
+                    </button>
+                    <button class="ventas-btn-aux" type="button" onclick="mostrarAlerta('Email', 'Envío de comprobante en desarrollo.')">
+                        <i class="fa-regular fa-envelope"></i>
+                        Enviar Email
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button class="ventas-fab-cart" type="button" onclick="mostrarAlerta('Carrito', 'Hay productos listos para vender.')">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+    </div>
+</div>

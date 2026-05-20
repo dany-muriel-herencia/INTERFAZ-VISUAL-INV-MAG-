@@ -1,0 +1,71 @@
+<div id="section-alertas" class="section-content">
+    <div class="alertas-page">
+        <div class="alertas-container">
+            <header class="alertas-header">
+                <div class="alertas-title">
+                    <i class="fa-regular fa-bell"></i>
+                    Alertas SIV-MAG
+                </div>
+                <div class="alertas-header-actions">
+                    <button class="alertas-icon-btn" type="button" onclick="mostrarAlerta('Buscar', 'Buscador de alertas en desarrollo.')">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button class="alertas-icon-btn" type="button" onclick="mostrarAlerta('Configuración', 'Configuración de alertas en desarrollo.')">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                </div>
+            </header>
+
+            <nav class="alertas-tabs">
+                <button class="alertas-tab-btn active" type="button" onclick="filtrarAlertas(this, 'todas')">Todas</button>
+                <button class="alertas-tab-btn" type="button" onclick="filtrarAlertas(this, 'stock')">Stock</button>
+                <button class="alertas-tab-btn" type="button" onclick="filtrarAlertas(this, 'pagos')">Pagos</button>
+                <button class="alertas-tab-btn" type="button" onclick="filtrarAlertas(this, 'logistica')">Logística</button>
+            </nav>
+
+            <main class="alertas-list">
+                <article class="alertas-card alertas-priority-high" data-alert-type="stock">
+                    <div class="alertas-left-section">
+                        <div class="alertas-icon-wrapper">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <div class="alertas-content">
+                            <span class="alertas-tag">Prioridad Alta</span>
+                            <div class="alertas-card-title">Stock Crítico: Aceite Primor 1L</div>
+                            <p class="alertas-desc">Solo queda 1 caja en el Almacén Central. Reposición urgente requerida.</p>
+                        </div>
+                    </div>
+                    <time class="alertas-time">Hace 10m</time>
+                </article>
+
+                <article class="alertas-card alertas-priority-medium" data-alert-type="pagos">
+                    <div class="alertas-left-section">
+                        <div class="alertas-icon-wrapper">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <div class="alertas-content">
+                            <span class="alertas-tag">Prioridad Media</span>
+                            <div class="alertas-card-title">Pago Pendiente: Juan Pérez</div>
+                            <p class="alertas-desc">Factura por insumos de abarrotes vence en 24 horas. Monto: S/ 125.00.</p>
+                        </div>
+                    </div>
+                    <time class="alertas-time">Hace 2h</time>
+                </article>
+
+                <article class="alertas-card alertas-priority-low" data-alert-type="logistica">
+                    <div class="alertas-left-section">
+                        <div class="alertas-icon-wrapper">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="alertas-content">
+                            <span class="alertas-tag">Prioridad Baja</span>
+                            <div class="alertas-card-title">Nuevo Cliente: Don Pepe</div>
+                            <p class="alertas-desc">El establecimiento ha completado su registro como distribuidor minorista.</p>
+                        </div>
+                    </div>
+                    <time class="alertas-time">Ayer</time>
+                </article>
+            </main>
+        </div>
+    </div>
+</div>

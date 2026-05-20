@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIV-MAG - Sistema de Compras</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<!-- ===== LOGIN ===== -->
+
+<div class="login-page" id="loginPage">
+
+    <div class="left">
+        <div class="left-content">
+            <div class="icon-box">
+                <i class="fa-solid fa-box"></i>
+            </div>
+            <h1>SIV-MAG</h1>
+            <p>Sistema de Gestión Integral de Inventario y Ventas para tu negocio</p>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="login-box">
+            <h2>Iniciar Sesión</h2>
+            <p>Ingrese sus credenciales para acceder</p>
+
+            <form id="loginForm" onsubmit="login(event)">
+                <div class="input-group">
+                    <label>Usuario</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="user" placeholder="Ingrese su usuario" required>
+                    </div>
+                    <div class="error-message" id="userError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="pass" placeholder="Ingrese su contraseña" required>
+                    </div>
+                    <div class="error-message" id="passError"></div>
+                </div>
+
+                <div class="extra">
+                    <label class="checkbox">
+                        <input type="checkbox" id="rememberUser"> Recuérdame
+                    </label>
+                    <a href="#">¿Olvidó su contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn btn-login">Ingresar</button>
+            </form>
+
+            <div style="text-align:center; color:#999; font-size:13px; margin-top:20px;">
+                © 2024 SIV-MAG. Todos los derechos reservados.
+            </div>
+            <div style="text-align:center; color:#64748b; font-size:12px; margin-top:10px;">
+                Demo: admin / 1234 · vendedor / ventas123
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+
+<div class="dashboard" id="dashboard">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>SIV-MAG</h2>
+            <p>Sistema de Gestión</p>
+        </div>
+
+        <ul class="menu">
+            <li onclick="showSection('usuario', event)"><i class="fa-solid fa-user"></i> Usuario</li>
+            <li onclick="showSection('categorias', event)"><i class="fa-solid fa-layer-group"></i> Categorías</li>
+            <li onclick="showSection('producto', event)"><i class="fa-solid fa-box"></i> Producto</li>
+            <li onclick="showSection('cliente', event)"><i class="fa-solid fa-users"></i> Cliente</li>
+            <li onclick="showSection('ventas', event)"><i class="fa-solid fa-cash-register"></i> Ventas</li>
+            <li class="active" onclick="showSection('compras', event)"><i class="fa-solid fa-cart-shopping"></i> Compras</li>
+            <li onclick="showSection('movimientos', event)"><i class="fa-solid fa-right-left"></i> Movimientos</li>
+            <li onclick="showSection('caja', event)"><i class="fa-solid fa-money-bill"></i> Caja</li>
+            <li onclick="showSection('reportes', event)"><i class="fa-solid fa-chart-line"></i> Reportes</li>
+            <li onclick="showSection('alertas', event)"><i class="fa-solid fa-bell"></i> Alertas</li>
+        </ul>
+
+        <button class="new-btn" onclick="nuevaVenta()">+ Nueva Venta</button>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <div id="sectionsContainer"></div>
+
+
+    </div> <!-- Fin de main -->
+
+</div> <!-- Fin de dashboard -->
+<script src="js/app.js" defer></script>
+</body>
+</html>
+
+

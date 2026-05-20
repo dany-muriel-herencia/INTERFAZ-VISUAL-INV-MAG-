@@ -1,0 +1,60 @@
+{
+  "credenciales": [
+    {
+      "usuario": "admin",
+      "clave": "1234",
+      "nombre": "Admin Principal",
+      "rol": "Administrador General"
+    },
+    {
+      "usuario": "vendedor",
+      "clave": "ventas123",
+      "nombre": "Juan Sanchez",
+      "rol": "Vendedor"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "USR-001",
+      "nombre": "Admin Principal",
+      "email": "admin@bodega.com",
+      "rol": "Admin",
+      "estado": "ACTIVO"
+    },
+    {
+      "id": "USR-002",
+      "nombre": "Juan Sanchez",
+      "email": "juan.s@bodega.com",
+      "rol": "Vendedor",
+      "estado": "ACTIVO"
+    },
+    {
+      "id": "USR-003",
+      "nombre": "Maria Alva",
+      "email": "maria.a@bodega.com",
+      "rol": "Vendedor",
+      "estado": "INACTIVO"
+    }
+  ],
+  "productos": [
+    {
+      "sku": "775012345",
+      "nombre": "Arroz Costeño Extra 5kg",
+      "precio": 18.5,
+      "stock": 20
+    },
+    {
+      "sku": "775098765",
+      "nombre": "Aceite Primor Premium 1L",
+      "precio": 11.2,
+      "stock": 12
+    },
+    {
+      "sku": "775044332",
+      "nombre": "Leche Gloria Azul 400g",
+      "precio": 4.5,
+      "stock": 48
+    }
+  ],
+  "ventas": []
+}

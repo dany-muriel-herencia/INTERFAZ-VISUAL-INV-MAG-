@@ -1,0 +1,93 @@
+<div id="section-categorias" class="section-content">
+    <div class="categorias-page">
+        <nav class="categorias-navbar">
+            <div class="categorias-logo">SIV-MAG</div>
+            <div class="categorias-navbar-right">
+                <button class="categorias-nav-icon" type="button" onclick="mostrarAlerta('Notificaciones', 'No tienes notificaciones nuevas.')">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+                <button class="categorias-nav-icon" type="button" onclick="mostrarAlerta('Ayuda', 'Centro de ayuda en desarrollo.')">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
+                <div class="categorias-nav-time">10:30 AM</div>
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=100" alt="Admin Principal" class="categorias-user-avatar">
+            </div>
+        </nav>
+
+        <div class="categorias-container">
+            <header class="categorias-page-header">
+                <div class="categorias-module-tag">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    Gestión de Inventario
+                </div>
+                <h1>Registrar Categoría</h1>
+                <p>Añada una nueva clasificación para organizar sus productos eficientemente.</p>
+            </header>
+
+            <main class="categorias-main-card">
+                <aside class="categorias-info-sidebar">
+                    <div>
+                        <h2>Organización</h2>
+                        <p>Las categorías permiten filtrar reportes y optimizar la búsqueda en el punto de venta.</p>
+                    </div>
+                    <div class="categorias-graphic-container">
+                        <i class="fa-solid fa-shapes"></i>
+                    </div>
+                </aside>
+
+                <section class="categorias-form-content">
+                    <div class="categorias-form-group">
+                        <label for="category-name">Nombre de la Categoría</label>
+                        <input type="text" id="category-name" placeholder="Ej. Electrónicos, Alimentos Perecederos...">
+                    </div>
+
+                    <div class="categorias-form-group">
+                        <label for="category-desc">Descripción</label>
+                        <textarea id="category-desc" placeholder="Detalle el propósito de esta categoría..."></textarea>
+                    </div>
+
+                    <div class="categorias-info-alert">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p>Evite nombres duplicados. Una descripción clara ayuda a otros administradores a clasificar productos correctamente.</p>
+                    </div>
+
+                    <div class="categorias-button-row">
+                        <button class="categorias-btn categorias-btn-cancel" type="button" onclick="limpiarCategoria()">
+                            Cancelar
+                        </button>
+                        <button class="categorias-btn categorias-btn-submit" type="button" onclick="registrarCategoria()">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Registrar Categoría
+                        </button>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="categorias-features-grid">
+                <div class="categorias-feature-card">
+                    <div class="categorias-feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>Validación</h3>
+                    <p>Los nombres son verificados automáticamente para evitar duplicidad en el sistema.</p>
+                </div>
+
+                <div class="categorias-feature-card">
+                    <div class="categorias-feature-icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <h3>Historial</h3>
+                    <p>Cada registro queda auditado con fecha, hora y usuario responsable.</p>
+                </div>
+
+                <div class="categorias-feature-card">
+                    <div class="categorias-feature-icon">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <h3>Sincronización</h3>
+                    <p>Los cambios se reflejan en tiempo real en todos los terminales POS activos.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

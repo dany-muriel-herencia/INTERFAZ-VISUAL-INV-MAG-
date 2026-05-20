@@ -1,0 +1,157 @@
+<div id="section-reportes" class="section-content">
+    <div class="reportes-page">
+        <nav class="reportes-navbar">
+            <div class="reportes-header-title">
+                <h1>Gestión de Usuarios</h1>
+                <p>Administre el acceso del personal de la bodega</p>
+            </div>
+            <div class="reportes-navbar-right">
+                <div class="reportes-search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="reportesBuscarUsuario" placeholder="Buscar usuario..." oninput="filtrarUsuariosReporte()">
+                </div>
+                <button class="reportes-icon-btn" type="button" onclick="mostrarAlerta('Notificaciones', 'No tienes notificaciones nuevas.')">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+                <button class="reportes-icon-btn" type="button" onclick="mostrarAlerta('Configuración', 'Panel de configuración en desarrollo.')">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                <div class="reportes-user-top-profile">
+                    <div class="reportes-user-top-info">
+                        <div class="reportes-user-top-name">Admin Principal</div>
+                        <div class="reportes-user-top-status">ONLINE</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=100" alt="Admin" class="reportes-avatar-top">
+                </div>
+            </div>
+        </nav>
+
+        <div class="reportes-workspace-grid">
+            <main class="reportes-table-card">
+                <div class="reportes-table-card-header">
+                    <h2>Listado de Personal</h2>
+                    <button class="reportes-btn-new-user" type="button" onclick="mostrarAlerta('Nuevo Usuario', 'Formulario de nuevo usuario en desarrollo.')">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Nuevo Usuario
+                    </button>
+                </div>
+
+                <div class="reportes-table-wrap">
+                    <table class="reportes-data-table">
+                        <thead>
+                            <tr>
+                                <th>NOMBRE</th>
+                                <th>ROL</th>
+                                <th>ESTADO</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="reportes-user-row" onclick="seleccionarUsuarioReporte('Admin Principal','Administrador General','USR-001','Hoy, 08:45 AM','S/ 4,250.00','ACTIVO','https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150', true)">
+                                <td>
+                                    <div class="reportes-user-meta">
+                                        <div class="reportes-avatar-initials reportes-avatar-ap">AP</div>
+                                        <div class="reportes-user-name-email">
+                                            <div class="reportes-name">Admin Principal</div>
+                                            <div class="reportes-email">admin@bodega.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="reportes-badge reportes-badge-admin">Admin</span></td>
+                                <td><div class="reportes-status-indicator reportes-status-active">Activo</div></td>
+                                <td><span class="reportes-link-details">Detalles</span></td>
+                            </tr>
+                            <tr class="reportes-user-row" onclick="seleccionarUsuarioReporte('Juan Sanchez','Vendedor','USR-002','Hoy, 09:10 AM','S/ 2,840.00','ACTIVO','https://ui-avatars.com/api/?name=Juan+Sanchez&background=0369a1&color=fff&size=150', false)">
+                                <td>
+                                    <div class="reportes-user-meta">
+                                        <div class="reportes-avatar-initials reportes-avatar-js">JS</div>
+                                        <div class="reportes-user-name-email">
+                                            <div class="reportes-name">Juan Sanchez</div>
+                                            <div class="reportes-email">juan.s@bodega.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="reportes-badge reportes-badge-vendedor">Vendedor</span></td>
+                                <td><div class="reportes-status-indicator reportes-status-active">Activo</div></td>
+                                <td><span class="reportes-link-details">Detalles</span></td>
+                            </tr>
+                            <tr class="reportes-user-row" onclick="seleccionarUsuarioReporte('Maria Alva','Vendedora','USR-003','Ayer, 06:20 PM','S/ 1,730.00','INACTIVO','https://ui-avatars.com/api/?name=Maria+Alva&background=94a3b8&color=fff&size=150', false)">
+                                <td>
+                                    <div class="reportes-user-meta">
+                                        <div class="reportes-avatar-initials reportes-avatar-ma">MA</div>
+                                        <div class="reportes-user-name-email">
+                                            <div class="reportes-name">Maria Alva</div>
+                                            <div class="reportes-email">maria.a@bodega.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="reportes-badge reportes-badge-vendedor">Vendedor</span></td>
+                                <td><div class="reportes-status-indicator reportes-status-inactive">Inactivo</div></td>
+                                <td><span class="reportes-link-details">Detalles</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="reportes-table-footer" id="reportesUsuariosFooter">
+                    Mostrando 3 usuarios registrados en el sistema
+                </div>
+            </main>
+
+            <aside class="reportes-sidebar">
+                <div class="reportes-details-card">
+                    <div class="reportes-details-avatar-container">
+                        <img id="reporteDetalleAvatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150" alt="Detail Profile" class="reportes-details-avatar">
+                    </div>
+                    <h3 id="reporteDetalleNombre">Admin Principal</h3>
+                    <div class="reportes-subtitle" id="reporteDetalleRol">Administrador General</div>
+
+                    <div class="reportes-details-info-list">
+                        <div class="reportes-info-row">
+                            <span class="reportes-label">ID de Usuario</span>
+                            <span class="reportes-value" id="reporteDetalleId">USR-001</span>
+                        </div>
+                        <div class="reportes-info-row">
+                            <span class="reportes-label">Último Ingreso</span>
+                            <span class="reportes-value" id="reporteDetalleIngreso">Hoy, 08:45 AM</span>
+                        </div>
+                        <div class="reportes-info-row">
+                            <span class="reportes-label">Ventas del Mes</span>
+                            <span class="reportes-value" id="reporteDetalleVentas">S/ 4,250.00</span>
+                        </div>
+                        <div class="reportes-info-row">
+                            <span class="reportes-label">Estado Actual</span>
+                            <span class="reportes-badge-status-active" id="reporteDetalleEstado">ACTIVO</span>
+                        </div>
+                    </div>
+
+                    <div class="reportes-alert-box" id="reporteDetalleAlerta">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span><strong>Acción no permitida:</strong> No puede inactivar su propia cuenta</span>
+                    </div>
+
+                    <button class="reportes-btn-status-change" type="button" onclick="mostrarAlerta('Cambiar Estado', 'Validación de permisos en desarrollo.')">Cambiar Estado</button>
+
+                    <button class="reportes-btn-edit-link" type="button" onclick="mostrarAlerta('Editar Información', 'Edición de usuario en desarrollo.')">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        Editar Información
+                    </button>
+                </div>
+
+                <div class="reportes-shift-card">
+                    <h4>RESUMEN DE TURNO</h4>
+                    <div class="reportes-shift-grid">
+                        <div class="reportes-shift-box">
+                            <div class="reportes-box-lbl">Efectivo en Caja</div>
+                            <div class="reportes-box-val">S/ 1,280</div>
+                        </div>
+                        <div class="reportes-shift-box">
+                            <div class="reportes-box-lbl">Transacciones</div>
+                            <div class="reportes-box-val">42</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>

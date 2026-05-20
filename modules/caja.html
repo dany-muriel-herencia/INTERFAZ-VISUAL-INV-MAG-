@@ -1,0 +1,233 @@
+﻿<div id="section-caja" class="section-content">
+            <div class="flex-1 flex flex-col relative">
+                
+                <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center sticky top-0 z-10">
+                    <div class="flex items-center">
+                        <h2 class="text-xl font-bold text-blue-600">Gestión de Caja</h2>
+                        <span class="mx-4 text-gray-300">|</span>
+                        <span class="text-sm text-gray-500 font-medium">20 Mayo, 2026 | 13:20 PM</span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-6">
+                        <div id="turnoStatusContainer" class="flex items-center px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs font-semibold border border-yellow-200">
+                            <div id="turnoStatusDot" class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></div>
+                            <span id="turnoStatusText">Turno Abierto</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="text-right">
+                                <p class="text-sm font-bold text-gray-800 leading-tight">Admin User</p>
+                                <p class="text-xs text-gray-500">Cajero Principal</p>
+                            </div>
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff" alt="User Avatar" class="w-10 h-10 rounded-full border border-gray-200">
+                        </div>
+                    </div>
+                </header>
+
+                <div class="p-8 pb-20">
+                    
+                    <div class="flex flex-col xl:flex-row gap-6 mb-6">
+                        
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 xl:w-1/4">
+                            <h3 class="text-blue-600 font-semibold flex items-center mb-6">
+                                <i class="fa-solid fa-lock-open mr-2"></i> Apertura de Caja
+                            </h3>
+                            
+                            <div class="mb-4">
+                                <label class="block text-xs font-medium text-gray-500 mb-1">Monto Inicial (S/)</label>
+                                <input type="text" value="S/ 500.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-gray-800 font-medium focus:outline-none" disabled>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-xs font-medium text-gray-500 mb-1">Usuario/Cajero</label>
+                                <div class="relative">
+                                    <input type="text" value="Admin User" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-gray-800 font-medium focus:outline-none" disabled>
+                                    <i class="fa-solid fa-lock text-gray-400 absolute right-3 top-3"></i>
+                                </div>
+                            </div>
+                            
+                            <button id="abrirTurnoBtn" onclick="abrirNuevoTurno()" disabled class="w-full bg-gray-300 text-gray-500 rounded-lg py-3 font-semibold text-sm cursor-not-allowed flex items-center justify-center transition">
+                                <i class="fa-regular fa-circle-check mr-2"></i> Turno Abierto
+                            </button>
+                        </div>
+
+                        <div class="xl:w-3/4 grid grid-cols-1 md:grid-cols-3 gap-6">
+                            
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col justify-center">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">TOTAL VENTAS</span>
+                                    <div class="bg-blue-100 p-2 rounded text-blue-600"><i class="fa-solid fa-money-bill-1-wave"></i></div>
+                                </div>
+                                <h4 class="text-2xl font-bold text-gray-800 mb-1">S/ 4,250.80</h4>
+                                <span class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i>+12% vs ayer</span>
+                            </div>
+
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col justify-center">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">EFECTIVO</span>
+                                    <div class="bg-emerald-50 p-2 rounded text-emerald-600 border border-emerald-100"><i class="fa-solid fa-money-bill"></i></div>
+                                </div>
+                                <h4 class="text-2xl font-bold text-gray-800 mb-1">S/ 1,120.00</h4>
+                                <span class="text-xs text-gray-400">Contado en caja</span>
+                            </div>
+
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col justify-center">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">TARJETA</span>
+                                    <div class="bg-blue-50 p-2 rounded text-blue-600 border border-blue-100"><i class="fa-regular fa-credit-card"></i></div>
+                                </div>
+                                <h4 class="text-2xl font-bold text-gray-800 mb-1">S/ 2,830.00</h4>
+                                <span class="text-xs text-gray-400">Visa / Mastercard</span>
+                            </div>
+
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col justify-center">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">YAPE / PLIN</span>
+                                    <div class="bg-purple-50 p-2 rounded text-purple-600 border border-purple-100"><i class="fa-solid fa-qrcode"></i></div>
+                                </div>
+                                <h4 class="text-2xl font-bold text-gray-800 mb-1">S/ 300.80</h4>
+                                <span class="text-xs text-gray-400">Billeteras digitales</span>
+                            </div>
+
+                            <div class="md:col-span-2 bg-blue-700 rounded-xl shadow-sm p-6 text-white flex flex-col justify-center relative overflow-hidden">
+                                <div class="absolute right-6 top-6 bg-blue-600 p-3 rounded-lg bg-opacity-50">
+                                    <i class="fa-solid fa-wallet text-xl"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider mb-2">DIFERENCIA DE CAJA</span>
+                                <div class="flex items-center items-end gap-3 mb-1">
+                                    <h4 class="text-4xl font-bold">S/ 0.00</h4>
+                                    <span class="bg-blue-500 bg-opacity-40 text-blue-100 text-xs px-2 py-1 rounded font-medium mb-1 border border-blue-400">Cuadrado</span>
+                                </div>
+                                <span class="text-sm text-blue-200">Sin discrepancias detectadas</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 mb-6">
+                        <div class="p-5 border-b border-gray-100 flex justify-between items-center">
+                            <h3 class="font-semibold text-gray-800 flex items-center">
+                                <i class="fa-solid fa-list-ul mr-2 text-gray-400"></i> Ventas del Turno
+                            </h3>
+                            <div class="flex items-center gap-3">
+                                <div class="relative">
+                                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-sm"></i>
+                                    <input type="text" id="buscarVentaInput" oninput="filtrarVentas()" placeholder="Buscar venta..." class="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 bg-gray-50 w-64">
+                                </div>
+                                <button class="text-gray-500 hover:text-gray-700"><i class="fa-solid fa-filter"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm text-gray-600">
+                                <thead class="text-xs text-gray-400 uppercase bg-gray-50 border-b border-gray-100">
+                                    <tr>
+                                        <th class="px-6 py-4 font-semibold">Nº VENTA</th>
+                                        <th class="px-6 py-4 font-semibold">CLIENTE</th>
+                                        <th class="px-6 py-4 font-semibold text-center">MÉTODO DE PAGO</th>
+                                        <th class="px-6 py-4 font-semibold text-center">HORA</th>
+                                        <th class="px-6 py-4 font-semibold text-right">TOTAL (S/)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100">
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-6 py-4 font-bold text-blue-600">#V-2045</td>
+                                        <td class="px-6 py-4 font-medium text-gray-800">Carlos Arrieta</td>
+                                        <td class="px-6 py-4 text-center">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                                <i class="fa-solid fa-money-bill-wave mr-1.5"></i> Efectivo
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">14:12 PM</td>
+                                        <td class="px-6 py-4 text-right font-bold text-gray-800">S/ 120.00</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-6 py-4 font-bold text-blue-600">#V-2044</td>
+                                        <td class="px-6 py-4 font-medium text-gray-800">Empresa Logis S.A.C</td>
+                                        <td class="px-6 py-4 text-center">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+                                                <i class="fa-regular fa-credit-card mr-1.5"></i> Tarjeta
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">13:55 PM</td>
+                                        <td class="px-6 py-4 text-right font-bold text-gray-800">S/ 2,450.00</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-6 py-4 font-bold text-blue-600">#V-2043</td>
+                                        <td class="px-6 py-4 font-medium text-gray-800">Maria Fernanda Lopez</td>
+                                        <td class="px-6 py-4 text-center">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+                                                <i class="fa-solid fa-mobile-screen mr-1.5"></i> Yape
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">13:40 PM</td>
+                                        <td class="px-6 py-4 text-right font-bold text-gray-800">S/ 45.80</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-6 py-4 font-bold text-blue-600">#V-2042</td>
+                                        <td class="px-6 py-4 font-medium text-gray-800">Juan Pablo Vizcarra</td>
+                                        <td class="px-6 py-4 text-center">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                                <i class="fa-solid fa-money-bill-wave mr-1.5"></i> Efectivo
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">13:20 PM</td>
+                                        <td class="px-6 py-4 text-right font-bold text-gray-800">S/ 380.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="p-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
+                            <span>Mostrando 4 de 28 ventas en este turno</span>
+                            <div class="flex items-center gap-1">
+                                <button class="px-2 py-1 border border-gray-200 rounded text-gray-400 hover:bg-gray-50"><i class="fa-solid fa-chevron-left"></i></button>
+                                <button class="px-3 py-1 bg-blue-700 text-white rounded font-medium">1</button>
+                                <button class="px-3 py-1 border border-gray-200 rounded text-gray-600 hover:bg-gray-50">2</button>
+                                <button class="px-2 py-1 border border-gray-200 rounded text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+                        
+                        <div class="flex-shrink-0">
+                            <h3 class="text-red-600 font-bold flex items-center mb-1 text-lg">
+                                <i class="fa-solid fa-lock mr-2"></i> Cierre de Caja
+                            </h3>
+                            <p class="text-xs text-gray-500">Verifique los montos antes de<br>cerrar.</p>
+                        </div>
+
+                        <div class="flex-grow flex gap-4 w-full md:w-auto">
+                            <div class="w-1/3">
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Monto Real en Caja (S/)</label>
+                                <input type="text" id="montoRealInput" placeholder="S/ 0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-800 focus:outline-none focus:border-blue-500">
+                            </div>
+                            <div class="w-2/3">
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Observaciones</label>
+                                <input type="text" placeholder="Ej: Arqueo conforme..." class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-800 focus:outline-none focus:border-blue-500">
+                            </div>
+                        </div>
+
+                        <button onclick="cerrarTurnoActual()" class="flex-shrink-0 bg-red-700 text-white rounded-lg px-6 py-3 font-semibold text-sm hover:bg-red-800 transition flex items-center shadow-sm">
+                            <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Cerrar<br>Turno
+                        </button>
+                    </div>
+                    
+                    <div class="mt-8 pt-4 border-t border-gray-200 flex justify-between text-xs text-gray-400">
+                        <span>© 2026 SIV-MAG | Procurement System v4.2</span>
+                        <div class="space-x-4">
+                            <a href="#" class="hover:text-gray-600">Centro de Ayuda</a>
+                            <a href="#" class="hover:text-gray-600">Políticas de Seguridad</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="fixed bottom-8 right-8 w-14 h-14 bg-blue-700 text-white rounded-full shadow-lg flex justify-center items-center text-2xl hover:bg-blue-800 transition transform hover:scale-105 z-20" onclick="mostrarAlerta('Nueva Transacción', 'Funcionalidad en desarrollo.')">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+
+            </div>
+        </div>
+

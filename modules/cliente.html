@@ -1,0 +1,120 @@
+<div id="section-cliente" class="section-content">
+    <div class="clientes-page">
+        <nav class="clientes-navbar">
+            <div class="clientes-search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar en el sistema...">
+            </div>
+
+            <div class="clientes-navbar-right">
+                <button class="clientes-nav-icon" type="button" onclick="mostrarAlerta('Notificaciones', 'No tienes notificaciones nuevas.')">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+                <button class="clientes-nav-icon" type="button" onclick="mostrarAlerta('Ayuda', 'Centro de ayuda en desarrollo.')">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
+                <div class="clientes-divider"></div>
+                <div class="clientes-user-profile">
+                    <div class="clientes-user-info">
+                        <div class="clientes-user-name">Admin User</div>
+                        <div class="clientes-user-role">Global Logistics</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="Admin User" class="clientes-user-avatar">
+                </div>
+            </div>
+        </nav>
+
+        <div class="clientes-container">
+            <nav class="clientes-breadcrumbs">
+                Dashboard / Clientes / <span>Registrar Cliente</span>
+            </nav>
+
+            <header class="clientes-page-header">
+                <h1>Registrar Nuevo Cliente</h1>
+                <p>Complete el siguiente formulario para dar de alta un nuevo cliente en el sistema SIV-MAG.</p>
+            </header>
+
+            <div class="clientes-main-grid">
+                <main class="clientes-form-card">
+                    <div class="clientes-card-section-title">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Información Personal
+                    </div>
+
+                    <form class="clientes-form-container" onsubmit="event.preventDefault(); registrarCliente();">
+                        <div class="clientes-form-group">
+                            <label for="cliente-fullname">Nombre Completo</label>
+                            <input type="text" id="cliente-fullname" placeholder="Ej. Juan Pérez García" oninput="actualizarPreviewCliente()">
+                        </div>
+
+                        <div class="clientes-form-row-2">
+                            <div class="clientes-form-group">
+                                <label for="cliente-phone">Teléfono</label>
+                                <div class="clientes-input-with-icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <input type="text" id="cliente-phone" placeholder="+51 999 999 999" oninput="actualizarPreviewCliente()">
+                                </div>
+                            </div>
+                            <div class="clientes-form-group">
+                                <label for="cliente-status">Estado</label>
+                                <select id="cliente-status">
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="clientes-form-group">
+                            <label for="cliente-address">Dirección</label>
+                            <textarea id="cliente-address" placeholder="Calle, número, distrito o referencia"></textarea>
+                        </div>
+
+                        <div class="clientes-actions-row">
+                            <button type="button" class="clientes-btn clientes-btn-cancel" onclick="limpiarCliente()">Cancelar</button>
+                            <button type="submit" class="clientes-btn clientes-btn-submit">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                Registrar Cliente
+                            </button>
+                        </div>
+                    </form>
+                </main>
+
+                <aside class="clientes-sidebar">
+                    <div class="clientes-recommendations-card">
+                        <h3>RECOMENDACIONES</h3>
+
+                        <div class="clientes-rec-item">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <p>Verifique el formato del teléfono para asegurar la comunicación vía WhatsApp.</p>
+                        </div>
+
+                        <div class="clientes-rec-item">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <p>Los datos de dirección son obligatorios para la generación de facturas automáticas.</p>
+                        </div>
+                    </div>
+
+                    <div class="clientes-preview-card">
+                        <div class="clientes-preview-header">
+                            <h3>Previsualización de Perfil</h3>
+                            <span class="clientes-badge-draft">BORRADOR</span>
+                        </div>
+                        <div class="clientes-preview-body">
+                            <div class="clientes-preview-avatar-placeholder">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <div class="clientes-preview-data">
+                                <div id="cliente-preview-name" class="clientes-preview-name clientes-preview-muted">Nombre del cliente</div>
+                                <div id="cliente-preview-phone" class="clientes-preview-phone clientes-preview-muted">Teléfono</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clientes-quote-card">
+                        <p>"La excelencia en el servicio comienza con la precisión en los datos."</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
